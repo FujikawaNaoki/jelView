@@ -14,6 +14,7 @@ import {
     TouchableHighlight,
     TextInput,
     ListView,
+    Dimensions,
 } from 'react-native'
 
 import {
@@ -42,11 +43,22 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const rpi_host_name = "raspberrypi.local";
+const rpi_host_name = "raspberrypi2.local";
 
 const configuration = {"iceServers": [{"url": "stun:" + rpi_host_name + ":3478"}]};
-const socketURL = "wss://" + rpi_host_name + ":8080" + "/stream/webrtc";
+const socketURL = "wss://" + rpi_host_name + ":8090" + "/stream/webrtc";
+const mediaConstraints = {
+    optional: [],
+    mandatory: {
+        OfferToReceiveAudio: true,
+        OfferToReceiveVideo: true
+    }
+};
 let ws;
+let pc;
+
+const window = Dimensions.get('window');
+const window_width = window.width;
 
 export default class App extends Component<{}> {
 
@@ -54,12 +66,50 @@ export default class App extends Component<{}> {
         super();
         this._onPlayPress = this._onPlayPress.bind(this);
         this._onStopPress = this._onStopPress.bind(this);
+        this._createPeerConnection = this._createPeerConnection.bind(this);
+        this._onStopPress = this._onStopPress.bind(this);
 
         this.state = {
             status: 'init',
             info: "Initializing",
             remoteViewSrc: null,
         };
+
+        console.log(window_width * 0.95);
+        console.log(window_width * 0.95 * 0.5625);
+    }
+    _createPeerConnection(){
+        console.log("_createPeerConnection");
+
+        pc = new RTCPeerConnection(configuration);
+        pc.onicecandidate = (event) => {
+            console.log("onicecandidate");
+            if (event.candidate) {
+                const candidate = {
+                    sdpMLineIndex: event.candidate.sdpMLineIndex,
+                    sdpMid: event.candidate.sdpMid,
+                    candidate: event.candidate.candidate
+                };
+                const request = {
+                    what: "addIceCandidate",
+                    data: JSON.stringify(candidate)
+                };
+                console.log("addIceCandidate");
+                ws.send(JSON.stringify(request));
+            } else {
+                console.log("End of candidates.");
+            }
+        };
+        pc.onaddstream = (event) => {
+            console.log('onaddstream', event.stream);
+            this.setState({info: 'One peer join!',remoteViewSrc:event.stream.toURL()});
+        };
+        pc.onremovestream = (event) =>{
+            console.log('onremovestream', event.stream);
+            this.setState({remoteViewSrc:null});
+        };
+        console.log("peer connection successfully created!");
+
     }
 
     _onPlayPress(event) {
@@ -71,23 +121,93 @@ export default class App extends Component<{}> {
         ws.onopen = () => {
             // connection opened
             console.log("WebSocket","Connection opened");
+            this._createPeerConnection();
             const request = {
                 what: "call",
                 options: {
                     force_hw_vcodec: true,
-                    vformat: '60'
+                    vformat: '60' //1280x720
                 }
             };
             const message = JSON.stringify(request);
             console.log("WebSocket:call", message);
+            this.setState({info: '接続要求送信'});
             ws.send(message);
         };
 
         ws.onmessage = (e) => {
             // a message was received
             console.log("WebSocket","a message was received");
+            this.setState({info: '接続要求の返信受信中'});
             let received_msg = JSON.parse(e.data);
-            console.log(received_msg);
+            const what = received_msg.what;
+            const data = received_msg.data;
+
+            switch (what) {
+                case "offer":
+                    console.log("####offer;data",data);
+                    const arr = JSON.parse(data).sdp.split(/\r\n|\n/);
+                    for (let i = 0; i < arr.length; i++){
+                        console.log(arr[i]);
+                    }
+                    pc.setRemoteDescription(new RTCSessionDescription(JSON.parse(data)),
+                        () => {
+                            console.log('onRemoteSdpSucces()');
+                            pc.createAnswer(function (sessionDescription) {
+                                pc.setLocalDescription(sessionDescription);
+                                const request = {
+                                    what: "answer",
+                                    data: JSON.stringify(sessionDescription)
+                                };
+                                const sendMsg = JSON.stringify(request);
+                                console.log("####anser;request;",sendMsg);
+                                ws.send(sendMsg);
+
+                            }, function (error) {
+                                alert("Failed to createAnswer: " + error);
+                            }, mediaConstraints);
+                        },
+                        (event) => {
+                            alert('Failed to set remote description (unsupported codec on this browser?): ' + event);
+                            this._onStopPress();
+                        }
+                    );
+                    const request = JSON.stringify({
+                        what: "generateIceCandidates"
+                    });
+                    console.log(request);
+                    ws.send(request);
+                    break;
+                case "message":
+                    console.log("####message;data",data);
+                    alert(data);
+                    break;
+                case "iceCandidates":
+                    console.log("####iceCandidates;data",data);
+                    const candidates = JSON.parse(data);
+                    for (let i = 0; candidates && i < candidates.length; i++) {
+                        const elt = candidates[i];
+                        const candidate = new RTCIceCandidate({
+                            sdpMLineIndex: elt.sdpMLineIndex,
+                            candidate: elt.candidate
+                        });
+                        pc.addIceCandidate(candidate,
+                            function () {
+                                console.log("IceCandidate added: " + JSON.stringify(candidate));
+                            },
+                            function (error) {
+                                console.error("addIceCandidate error: " + error);
+                            }
+                        );
+                    }
+                    break;
+                default:
+                    console.log("WebSocket.onmessage","メッセージをハンドリングできません");
+                    console.log("WebSocket.onmessage:what",what);
+                    console.log("WebSocket.onmessage:data",data);
+                    break;
+            }
+
         };
 
         ws.onerror = (e) => {
@@ -109,9 +229,19 @@ export default class App extends Component<{}> {
 
     _onStopPress(event) {
         this.setState({status: 'stop', info: 'Stopping'});
+        if (pc) {
+            pc.close();
+            pc = null;
+        }
+        if (ws) {
+            ws.close();
+            ws = null;
+        }
     }
 
     render() {
+        console.log("render;",this.state);
+
         return (
             <Container>
                 <Header/>
@@ -146,7 +276,8 @@ const styles = StyleSheet.create({
         //height:'100%'
     },
     rtc_view: {
-        backgroundColor:"gray",
-        //height:'100%'
-    },
+        //backgroundColor:"blue",
+        width: 356 ,
+        height: 200,
+    }
 });

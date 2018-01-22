@@ -7,13 +7,7 @@
 import React, {Component} from 'react';
 
 import {
-    Platform,
     StyleSheet,
-    View,
-    AppRegistry,
-    TouchableHighlight,
-    TextInput,
-    ListView,
     Dimensions,
 } from 'react-native'
 
@@ -24,12 +18,9 @@ import {
     Footer,
     FooterTab,
     Button,
-    Text,
     H1,
     Body,
 } from 'native-base';
-
-import io from 'socket.io-client';
 
 import {
     RTCPeerConnection,
@@ -75,8 +66,8 @@ export default class App extends Component<{}> {
             remoteViewSrc: null,
         };
 
-        console.log(window_width * 0.95);
-        console.log(window_width * 0.95 * 0.5625);
+        console.log(window_width );
+        console.log(window_width * 0.5625);
     }
     _createPeerConnection(){
         console.log("_createPeerConnection");
@@ -125,7 +116,7 @@ export default class App extends Component<{}> {
             const request = {
                 what: "call",
                 options: {
-                    force_hw_vcodec: true,
+                    force_hw_vcodec: false,
                     vformat: '60' //1280x720
                 }
             };
@@ -270,14 +261,14 @@ export default class App extends Component<{}> {
 const styles = StyleSheet.create({
     content: {
         flex:1,
-        // justifyContent: 'center' ,
-        // alignItems: 'center',
-        // backgroundColor:"white",
-        //height:'100%'
+        justifyContent: 'center' ,
+        alignItems: 'center',
+        backgroundColor:"white",
+        height:'100%'
     },
     rtc_view: {
         //backgroundColor:"blue",
-        width: 356 ,
-        height: 200,
+        width: 400 ,
+        height: 600,
     }
 });

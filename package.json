@@ -10,6 +10,7 @@
     "native-base": "^2.3.7",
     "react": "16.2.0",
     "react-native": "0.52.0",
+    "react-native-incall-manager": "^3.0.0",
     "react-native-vector-icons": "^4.5.0",
     "react-native-webrtc": "^1.58.3"
   },

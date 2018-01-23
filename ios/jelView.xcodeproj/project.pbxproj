@@ -65,6 +65,7 @@
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B0BB00E4A25446BF9743B03B /* Roboto_medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C047D9C18B04BF3A8CEF48A /* Roboto_medium.ttf */; };
 		DFAAFFE845B145A8A28848AE /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1643EA1EEB3A4C97B646098C /* Octicons.ttf */; };
+		F08F7C8060D54A4B9819507C /* libRNInCallManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FE3276F04752485896937AEA /* libRNInCallManager.a */; };
 		F8E1FAA20F504E468B00B0B4 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 222893D48EC34E2FAD6D9CDB /* FontAwesome.ttf */; };
 /* End PBXBuildFile section */
 
@@ -335,6 +336,13 @@
 			remoteGlobalIDString = 35A2221F1CB493700015FD5C;
 			remoteInfo = RCTWebRTC;
 		};
+		82881BE4201780FD00E69F46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77F8901C8ABF464A897F3877 /* RNInCallManager.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 231CD2561FD68A17004DD25D;
+			remoteInfo = RNInCallManager;
+		};
 		82E88A6120162E740093718A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20158D23C9D040E3A8D14408 /* RNVectorIcons.xcodeproj */;
@@ -406,6 +414,7 @@
 		61DEC1E9C106419CA4DA1C8D /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		67512398F29245DF8B7AF611 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		6DC20A3E35B842AB98B8AE7A /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
+		77F8901C8ABF464A897F3877 /* RNInCallManager.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNInCallManager.xcodeproj; path = "../node_modules/react-native-incall-manager/ios/RNInCallManager.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		820723EB2010E63500BB5A16 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		820723EC2010E63500BB5A16 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -428,6 +437,7 @@
 		C8A4B3DC0813425FB3D7BA1B /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		E3CA498C2A2742488C8B7C20 /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		F2450A24FA9742C1BD1405D9 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		FE3276F04752485896937AEA /* libRNInCallManager.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNInCallManager.a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,6 +480,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				8DFD3BC898FC439BA500F30B /* libRCTWebRTC.a in Frameworks */,
 				45008EA9F9744249AEC030E8 /* libRNVectorIcons.a in Frameworks */,
+				F08F7C8060D54A4B9819507C /* libRNInCallManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +666,7 @@
 			children = (
 				2724FCDBD1F44FEA96867A01 /* libRCTWebRTC.a */,
 				890F67C4C05449CDBF7E04EA /* libRNVectorIcons.a */,
+				FE3276F04752485896937AEA /* libRNInCallManager.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -663,6 +675,14 @@
 			isa = PBXGroup;
 			children = (
 				820723E42010E3DB00BB5A16 /* libRCTWebRTC.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		82881BE1201780FD00E69F46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				82881BE5201780FD00E69F46 /* libRNInCallManager.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -692,6 +712,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				8CEAFA7B2FA34F11850CC673 /* RCTWebRTC.xcodeproj */,
 				20158D23C9D040E3A8D14408 /* RNVectorIcons.xcodeproj */,
+				77F8901C8ABF464A897F3877 /* RNInCallManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -929,6 +950,10 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = 82881BE1201780FD00E69F46 /* Products */;
+					ProjectRef = 77F8901C8ABF464A897F3877 /* RNInCallManager.xcodeproj */;
 				},
 				{
 					ProductGroup = 82E88A5E20162E740093718A /* Products */;
@@ -1198,6 +1223,13 @@
 			remoteRef = 820723E32010E3DB00BB5A16 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		82881BE5201780FD00E69F46 /* libRNInCallManager.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNInCallManager.a;
+			remoteRef = 82881BE4201780FD00E69F46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		82E88A6220162E740093718A /* libRNVectorIcons.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1282,7 +1314,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=/Users/fujikawa/.nodebrew/current/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1375,12 +1407,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-webrtc/ios/RCTWebRTC/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-incall-manager/ios/RNInCallManager",
 				);
 				INFOPLIST_FILE = jelViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1402,12 +1436,14 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-webrtc/ios/RCTWebRTC/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-incall-manager/ios/RNInCallManager",
 				);
 				INFOPLIST_FILE = jelViewTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1436,6 +1472,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-webrtc/ios/RCTWebRTC/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-incall-manager/ios/RNInCallManager",
 				);
 				INFOPLIST_FILE = jelView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1468,6 +1505,7 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-webrtc/ios/RCTWebRTC/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-incall-manager/ios/RNInCallManager",
 				);
 				INFOPLIST_FILE = jelView/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1500,11 +1538,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-webrtc/ios/RCTWebRTC/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-incall-manager/ios/RNInCallManager",
 				);
 				INFOPLIST_FILE = "jelView-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1536,11 +1576,13 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-webrtc/ios/RCTWebRTC/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-incall-manager/ios/RNInCallManager",
 				);
 				INFOPLIST_FILE = "jelView-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
@@ -1573,6 +1615,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.jelView-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1597,6 +1640,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);

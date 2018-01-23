@@ -9,6 +9,7 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     Dimensions,
+    DeviceEventEmitter
 } from 'react-native'
 
 import {
@@ -33,6 +34,7 @@ import {
 } from 'react-native-webrtc';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import InCallManager from 'react-native-incall-manager';
 
 const rpi_host_name = "raspberrypi2.local";
 
@@ -68,7 +70,25 @@ export default class App extends Component<{}> {
 
         console.log(window_width );
         console.log(window_width * 0.5625);
+
+        DeviceEventEmitter.addListener('Proximity', function (data) {
+
+            // --- do something with events
+
+            console.log("Proximity",data);
+        });
     }
+
+    componentDidMount(){
+        InCallManager.start({media: 'audio'});
+        InCallManager.setForceSpeakerphoneOn(true);
+        InCallManager.setSpeakerphoneOn(true);
+
+    }
+    componentWillUnmount(){
+        InCallManager.stop();
+    }
+
     _createPeerConnection(){
         console.log("_createPeerConnection");
 
@@ -94,6 +114,12 @@ export default class App extends Component<{}> {
         pc.onaddstream = (event) => {
             console.log('onaddstream', event.stream);
             this.setState({info: 'One peer join!',remoteViewSrc:event.stream.toURL()});
+            console.log("event.stream.getAudioTracks()[0]",event.stream.getAudioTracks()[0]);
+            //
+            // let audioContext = new window.AudioContext();
+            // console.log(audioContext);
+            // audioContext.createAnalyser();
+            //
         };
         pc.onremovestream = (event) =>{
             console.log('onremovestream', event.stream);

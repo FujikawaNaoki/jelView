@@ -164,8 +164,9 @@
 
         var source = context.createMediaElementSource(myAudio);
         var analyser = context.createAnalyser();
+
         source.connect(analyser);
-        analyser.connect(context.destination);
+        source.connect(context.destination);
 
         var timerids = [null, null];
         var interval = 500;// msec
@@ -180,6 +181,13 @@
 </head>
 <body>
 src="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_ts/master.m3u8"
+https://bitmovin-a.akamaihd.net/content/playhouse-vr/m3u8s/105560.m3u8
+http://techslides.com/demos/sample-videos/small.mp4
+http://techslides.com/demos/sample-videos/small.3gp
+
+
+
+http://techslides.com/demos/sample-videos/small.mp4
 <div style="padding: 30px">
     <video id="my_audio"
            src="https://bitmovin-a.akamaihd.net/content/playhouse-vr/m3u8s/105560.m3u8"
@@ -187,7 +195,7 @@ src="https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv
            autoplay
            playsinline
            webkit-playsinline
-           width="300" height=""/>
+           width="300" height="200"/>
 </div>
 <br/>
 <div class="canvas-container">
